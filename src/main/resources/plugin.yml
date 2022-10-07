@@ -1,0 +1,8 @@
+name: ${project.artifactId}-bukkit
+main: ${project.groupId}.${project.artifactId}.bukkit.MinecraftProfileBukkit
+version: ${project.version}
+author: xXSchrandXx
+description: WSC-Minecraft-Profile
+api-version: 1.13
+load: POSTWORLD
+depend: [wscbridge-bukkit, SkinsRestorer]

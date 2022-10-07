@@ -1,0 +1,11 @@
+de.xxschrandxx.wsc.wscprofile.bukkit
+de.xxschrandxx.wsc.wscprofile.bukkit.api
+de.xxschrandxx.wsc.wscprofile.bukkit.api.event
+de.xxschrandxx.wsc.wscprofile.bukkit.listener
+de.xxschrandxx.wsc.wscprofile.bungee
+de.xxschrandxx.wsc.wscprofile.bungee.api
+de.xxschrandxx.wsc.wscprofile.bungee.api.event
+de.xxschrandxx.wsc.wscprofile.bungee.listener
+de.xxschrandxx.wsc.wscprofile.core
+de.xxschrandxx.wsc.wscprofile.core.api
+de.xxschrandxx.wsc.wscprofile.core.listener
