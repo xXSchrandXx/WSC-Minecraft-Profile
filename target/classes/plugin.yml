@@ -1,8 +1,0 @@
-name: wscprofile-bukkit
-main: de.xxschrandxx.wsc.wscprofile.bukkit.MinecraftProfileBukkit
-version: 1.0.0-SNAPSHOT
-author: xXSchrandXx
-description: WSC-Minecraft-Profile
-api-version: 1.13
-load: POSTWORLD
-depend: [wscbridge-bukkit, SkinsRestorer]

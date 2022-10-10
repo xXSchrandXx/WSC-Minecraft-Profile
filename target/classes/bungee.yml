@@ -1,6 +1,0 @@
-name: wscprofile-bungee
-main: de.xxschrandxx.wsc.wscprofile.bungee.MinecraftProfileBungee
-version: 1.0.0-SNAPSHOT
-author: xXSchrandXx
-description: WSC-Minecraft-Profile
-depends: [wscbridge-bungee, SkinsRestorer]
