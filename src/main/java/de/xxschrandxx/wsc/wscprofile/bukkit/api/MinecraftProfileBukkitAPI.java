@@ -18,7 +18,7 @@ public class MinecraftProfileBukkitAPI extends MinecraftBridgeBukkitAPI implemen
     protected final URL url;
 
     public MinecraftProfileBukkitAPI(URL url, Logger logger, MinecraftBridgeCoreAPI api) {
-        super(api.getID(), api.getAuth(), logger, api.isDebugModeEnabled());
+        super(api.getAuth(), logger, api.isDebugModeEnabled());
         this.url = url;
     }
 
