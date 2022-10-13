@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import de.xxschrandxx.wsc.wscbridge.bukkit.api.MinecraftBridgeBukkitAPI;
-import de.xxschrandxx.wsc.wscbridge.core.api.MinecraftBridgeCoreAPI;
 import de.xxschrandxx.wsc.wscbridge.core.api.Response;
 import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
 import de.xxschrandxx.wsc.wscprofile.core.api.IMinecraftProfileCoreAPI;
@@ -17,8 +16,8 @@ public class MinecraftProfileBukkitAPI extends MinecraftBridgeBukkitAPI implemen
 
     protected final URL url;
 
-    public MinecraftProfileBukkitAPI(URL url, Logger logger, MinecraftBridgeCoreAPI api) {
-        super(api.getAuth(), logger, api.isDebugModeEnabled());
+    public MinecraftProfileBukkitAPI(URL url, Logger logger, MinecraftBridgeBukkitAPI api) {
+        super(api, logger);
         this.url = url;
     }
 

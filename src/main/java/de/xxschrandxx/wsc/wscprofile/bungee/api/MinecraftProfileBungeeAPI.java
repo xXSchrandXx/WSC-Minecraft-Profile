@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import de.xxschrandxx.wsc.wscbridge.bungee.api.MinecraftBridgeBungeeAPI;
-import de.xxschrandxx.wsc.wscbridge.core.api.MinecraftBridgeCoreAPI;
 import de.xxschrandxx.wsc.wscbridge.core.api.Response;
 import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
 import de.xxschrandxx.wsc.wscprofile.core.api.IMinecraftProfileCoreAPI;
@@ -17,8 +16,8 @@ public class MinecraftProfileBungeeAPI extends MinecraftBridgeBungeeAPI implemen
 
     protected final URL url;
 
-    public MinecraftProfileBungeeAPI(URL url, Logger logger, MinecraftBridgeCoreAPI api) {
-        super(api.getID(), api.getAuth(), logger, api.isDebugModeEnabled());
+    public MinecraftProfileBungeeAPI(URL url, Logger logger, MinecraftBridgeBungeeAPI api) {
+        super(api, logger);
         this.url = url;
     }
 
