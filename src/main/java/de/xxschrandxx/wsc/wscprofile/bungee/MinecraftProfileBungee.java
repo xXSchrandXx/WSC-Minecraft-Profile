@@ -21,6 +21,10 @@ import net.md_5.bungee.config.YamlConfiguration;
 public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePlugin<MinecraftProfileBungeeAPI> {
 
     // start of api part
+    public String getInfo() {
+        return null;
+    }
+
     private static MinecraftProfileBungee instance;
 
     public static MinecraftProfileBungee getInstance() {

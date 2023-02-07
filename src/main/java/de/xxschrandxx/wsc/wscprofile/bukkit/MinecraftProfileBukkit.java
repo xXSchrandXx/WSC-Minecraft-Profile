@@ -18,6 +18,10 @@ import de.xxschrandxx.wsc.wscprofile.core.MinecraftProfileVars;
 public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBridgePlugin<MinecraftProfileBukkitAPI> {
 
     // start of api part
+    public String getInfo() {
+        return null;
+    }
+
     private static MinecraftProfileBukkit instance;
 
     public static MinecraftProfileBukkit getInstance() {
