@@ -6,7 +6,7 @@
 
 	<groupId>de.xxschrandxx.wsc</groupId>
 	<artifactId>wscprofile</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<name>WSC-Minecraft-Profile</name>
 	<url>https://github.com/xXSchrandXx/WSC-Minecraft-Profile</url>
@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>de.xxschrandxx.wsc</groupId>
 			<artifactId>wscbridge</artifactId>
-			<version>2.0.2</version>
+			<version>2.0.3</version>
 		</dependency>
 		<!-- SkinsRestorer API -->
 		<dependency>
