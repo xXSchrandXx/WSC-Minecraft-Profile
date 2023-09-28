@@ -35,7 +35,7 @@ public class MinecraftProfileVars extends AbstractConfiguration {
     public static final class defaults {
         // universal
         // url
-        public static final String url = "https://example.domain/index.php?minecraft-profile-code//";
+        public static final String url = "https://example.domain/index.php?minecraft-profile/";
 
         // language
         // language.command.noperm
