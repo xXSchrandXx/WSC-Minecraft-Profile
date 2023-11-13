@@ -6,7 +6,7 @@
 
 	<groupId>de.xxschrandxx.wsc</groupId>
 	<artifactId>wscprofile</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 
 	<name>WSC-Minecraft-Profile</name>
 	<url>https://github.com/xXSchrandXx/WSC-Minecraft-Profile</url>
@@ -26,7 +26,7 @@
 		<!-- SkinsRestorer API -->
 		<repository>
 			<id>codemc-releases</id>
-			<url>https://repo.codemc.org/repository/maven-releases/</url>
+			<url>https://repo.codemc.org/repository/maven-public/</url>
 		</repository>
 	</repositories>
 
@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>net.skinsrestorer</groupId>
 			<artifactId>skinsrestorer-api</artifactId>
-			<version>14.2.3</version>
+			<version>15.0.3</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
