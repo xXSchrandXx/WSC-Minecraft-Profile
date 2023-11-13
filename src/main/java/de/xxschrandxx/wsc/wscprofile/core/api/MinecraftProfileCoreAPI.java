@@ -5,30 +5,38 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Optional;
 
 import de.xxschrandxx.wsc.wscbridge.core.api.Response;
 import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
-import net.skinsrestorer.api.SkinsRestorerAPI;
-import net.skinsrestorer.api.property.IProperty;
+import net.skinsrestorer.api.PropertyUtils;
+import net.skinsrestorer.api.SkinsRestorer;
+import net.skinsrestorer.api.SkinsRestorerProvider;
+import net.skinsrestorer.api.exception.DataRequestException;
+import net.skinsrestorer.api.property.SkinProperty;
+import net.skinsrestorer.api.storage.PlayerStorage;
 
 public class MinecraftProfileCoreAPI {
     public static Response<String, Object> sendSkinData(IMinecraftProfileCoreAPI api, URL url, ISender<?> sender, Boolean online) throws SocketTimeoutException, MalformedURLException, IOException {
-        SkinsRestorerAPI skinsRestorerAPI = SkinsRestorerAPI.getApi();
-
-        IProperty skinData;
-        if (skinsRestorerAPI.hasSkin(sender.getName())) {
-            String skinName = skinsRestorerAPI.getSkinName(sender.getName());
-            skinData = skinsRestorerAPI.getSkinData(skinName);
-        }
-        else {
-            skinData = skinsRestorerAPI.getProfile(sender.getUniqueId().toString());
-        }
-
         HashMap<String, Object> request = new HashMap<String, Object>();
+
+        // Load SkinsRestorer API
+        SkinsRestorer skinsRestorerAPI = SkinsRestorerProvider.get();
+        PlayerStorage playerStorage = skinsRestorerAPI.getPlayerStorage();
+        try {
+            Optional<SkinProperty> property = playerStorage.getSkinForPlayer(sender.getUniqueId(), sender.getName());
+
+            if (property.isPresent()) {
+                // Set API
+                request.put("url", PropertyUtils.getSkinTextureUrl(property.get()));
+                request.put("type", PropertyUtils.getSkinVariant(property.get()).toString());
+            }
+        } catch (DataRequestException e) {
+            e.printStackTrace();
+        }
 
         request.put("uuid", sender.getUniqueId().toString());
         request.put("name", sender.getName());
-        request.put("url", skinsRestorerAPI.getSkinTextureUrl(skinData));
         if (online) {
             request.put("online", 1);
         } else {
