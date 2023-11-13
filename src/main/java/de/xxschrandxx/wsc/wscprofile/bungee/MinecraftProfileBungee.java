@@ -17,6 +17,9 @@ import de.xxschrandxx.wsc.wscprofile.core.MinecraftProfileVars;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
+import net.skinsrestorer.api.SkinsRestorer;
+import net.skinsrestorer.api.SkinsRestorerProvider;
+import net.skinsrestorer.api.event.SkinApplyEvent;
 
 public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePlugin<MinecraftProfileBungeeAPI> {
 
@@ -79,6 +82,11 @@ public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePl
         getProxy().getPluginManager().registerListener(getInstance(), new WSCBridgePluginReloadListenerBungee());
         getProxy().getPluginManager().registerListener(getInstance(), new AddModuleListenerBungee());
         getProxy().getPluginManager().registerListener(getInstance(), new PlayerListenerBungee());
+
+
+        // Add SkinsRestorer Listener
+        SkinsRestorer skinsRestorerAPI = SkinsRestorerProvider.get();
+        skinsRestorerAPI.getEventBus().subscribe(this, SkinApplyEvent.class, new SkinsRestorerListenerBungee());
     }
 
     @Override

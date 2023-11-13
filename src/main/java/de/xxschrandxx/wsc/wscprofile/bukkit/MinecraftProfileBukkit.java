@@ -14,6 +14,9 @@ import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
 import de.xxschrandxx.wsc.wscprofile.bukkit.api.MinecraftProfileBukkitAPI;
 import de.xxschrandxx.wsc.wscprofile.bukkit.listener.*;
 import de.xxschrandxx.wsc.wscprofile.core.MinecraftProfileVars;
+import net.skinsrestorer.api.SkinsRestorer;
+import net.skinsrestorer.api.SkinsRestorerProvider;
+import net.skinsrestorer.api.event.SkinApplyEvent;
 
 public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBridgePlugin<MinecraftProfileBukkitAPI> {
 
@@ -75,6 +78,10 @@ public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBrid
         getServer().getPluginManager().registerEvents(new WSCBridgePluginReloadListenerBukkit(), getInstance());
         getServer().getPluginManager().registerEvents(new AddModuleListenerBukkit(), getInstance());
         getServer().getPluginManager().registerEvents(new PlayerListenerBukkit(), getInstance());
+
+        // Add SkinsRestorer Listener
+        SkinsRestorer skinsRestorerAPI = SkinsRestorerProvider.get();
+        skinsRestorerAPI.getEventBus().subscribe(this, SkinApplyEvent.class, new SkinsRestorerListenerBukkit());
     }
 
     @Override
