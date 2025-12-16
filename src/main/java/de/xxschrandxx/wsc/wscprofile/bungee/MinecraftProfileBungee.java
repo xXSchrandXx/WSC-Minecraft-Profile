@@ -3,6 +3,8 @@ package de.xxschrandxx.wsc.wscprofile.bungee;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 
@@ -40,8 +42,8 @@ public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePl
         String urlString = getConfiguration().getString(MinecraftProfileVars.Configuration.url);
         URL url;
         try {
-            url = new URL(urlString);
-        } catch (MalformedURLException e) {
+            url = new URI(urlString).toURL();
+        } catch (MalformedURLException | URISyntaxException e) {
             getLogger().log(Level.INFO, "Could not load api, disabeling plugin!.", e);
             return;
         }
