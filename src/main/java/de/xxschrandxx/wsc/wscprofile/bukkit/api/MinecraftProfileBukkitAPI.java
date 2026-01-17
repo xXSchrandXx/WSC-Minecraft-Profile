@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.logging.Logger;
 
 import de.xxschrandxx.wsc.wscbridge.bukkit.api.MinecraftBridgeBukkitAPI;
+import de.xxschrandxx.wsc.wscbridge.core.api.MinecraftBridgeLogger;
 import de.xxschrandxx.wsc.wscbridge.core.api.Response;
 import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
 import de.xxschrandxx.wsc.wscprofile.core.api.IMinecraftProfileCoreAPI;
@@ -16,7 +16,7 @@ public class MinecraftProfileBukkitAPI extends MinecraftBridgeBukkitAPI implemen
 
     protected final URL url;
 
-    public MinecraftProfileBukkitAPI(URL url, Logger logger, MinecraftBridgeBukkitAPI api) {
+    public MinecraftProfileBukkitAPI(URL url, MinecraftBridgeLogger logger, MinecraftBridgeBukkitAPI api) {
         super(api, logger);
         this.url = url;
     }

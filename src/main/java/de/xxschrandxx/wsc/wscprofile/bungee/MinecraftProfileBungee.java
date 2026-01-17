@@ -11,7 +11,8 @@ import java.util.logging.Level;
 import de.xxschrandxx.wsc.wscbridge.bungee.MinecraftBridgeBungee;
 import de.xxschrandxx.wsc.wscbridge.bungee.api.ConfigurationBungee;
 import de.xxschrandxx.wsc.wscbridge.bungee.api.command.SenderBungee;
-import de.xxschrandxx.wsc.wscbridge.core.IMinecraftBridgePlugin;
+import de.xxschrandxx.wsc.wscbridge.core.IBridgePlugin;
+import de.xxschrandxx.wsc.wscbridge.core.api.MinecraftBridgeLogger;
 import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
 import de.xxschrandxx.wsc.wscprofile.bungee.api.MinecraftProfileBungeeAPI;
 import de.xxschrandxx.wsc.wscprofile.bungee.listener.*;
@@ -23,7 +24,7 @@ import net.skinsrestorer.api.SkinsRestorer;
 import net.skinsrestorer.api.SkinsRestorerProvider;
 import net.skinsrestorer.api.event.SkinApplyEvent;
 
-public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePlugin<MinecraftProfileBungeeAPI> {
+public class MinecraftProfileBungee extends Plugin implements IBridgePlugin<MinecraftProfileBungeeAPI> {
 
     // start of api part
     public String getInfo() {
@@ -38,6 +39,13 @@ public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePl
 
     private MinecraftProfileBungeeAPI api;
 
+    private MinecraftBridgeLogger bridgeLogger;
+
+    @Override
+    public MinecraftBridgeLogger getBridgeLogger() {
+        return bridgeLogger;
+    }
+
     public void loadAPI(ISender<?> sender) {
         String urlString = getConfiguration().getString(MinecraftProfileVars.Configuration.url);
         URL url;
@@ -50,7 +58,7 @@ public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePl
         MinecraftBridgeBungee wsc = MinecraftBridgeBungee.getInstance();
         this.api = new MinecraftProfileBungeeAPI(
             url,
-            getLogger(),
+            getBridgeLogger(),
             wsc.getAPI()
         );
     }
@@ -64,6 +72,7 @@ public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePl
     @Override
     public void onEnable() {
         instance = this;
+        bridgeLogger = new MinecraftBridgeLogger(getLogger());
 
         // Load configuration
         getLogger().log(Level.INFO, "Loading Configuration.");
@@ -128,7 +137,7 @@ public class MinecraftProfileBungee extends Plugin implements IMinecraftBridgePl
             config = new ConfigurationBungee();
         }
 
-        if (MinecraftProfileVars.startConfig(getConfiguration(), getLogger())) {
+        if (MinecraftProfileVars.startConfig(getConfiguration(), getBridgeLogger())) {
             if (!saveConfiguration()) {
                 return false;
             }

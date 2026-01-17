@@ -10,7 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import de.xxschrandxx.wsc.wscbridge.bukkit.MinecraftBridgeBukkit;
 import de.xxschrandxx.wsc.wscbridge.bukkit.api.ConfigurationBukkit;
 import de.xxschrandxx.wsc.wscbridge.bukkit.api.command.SenderBukkit;
-import de.xxschrandxx.wsc.wscbridge.core.IMinecraftBridgePlugin;
+import de.xxschrandxx.wsc.wscbridge.core.IBridgePlugin;
+import de.xxschrandxx.wsc.wscbridge.core.api.MinecraftBridgeLogger;
 import de.xxschrandxx.wsc.wscbridge.core.api.command.ISender;
 import de.xxschrandxx.wsc.wscprofile.bukkit.api.MinecraftProfileBukkitAPI;
 import de.xxschrandxx.wsc.wscprofile.bukkit.listener.*;
@@ -19,7 +20,7 @@ import net.skinsrestorer.api.SkinsRestorer;
 import net.skinsrestorer.api.SkinsRestorerProvider;
 import net.skinsrestorer.api.event.SkinApplyEvent;
 
-public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBridgePlugin<MinecraftProfileBukkitAPI> {
+public class MinecraftProfileBukkit extends JavaPlugin implements IBridgePlugin<MinecraftProfileBukkitAPI> {
 
     // start of api part
     public String getInfo() {
@@ -34,6 +35,13 @@ public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBrid
 
     private MinecraftProfileBukkitAPI api;
 
+    private MinecraftBridgeLogger bridgeLogger;
+
+    @Override
+    public MinecraftBridgeLogger getBridgeLogger() {
+        return bridgeLogger;
+    }
+
     public void loadAPI(ISender<?> sender) {
         String urlString = getConfiguration().getString(MinecraftProfileVars.Configuration.url);
         URL url;
@@ -46,7 +54,7 @@ public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBrid
         MinecraftBridgeBukkit wsc = MinecraftBridgeBukkit.getInstance();
         this.api = new MinecraftProfileBukkitAPI(
             url,
-            getLogger(),
+            getBridgeLogger(),
             wsc.getAPI()
         );
     }
@@ -59,6 +67,7 @@ public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBrid
     @Override
     public void onEnable() {
         instance = this;
+        bridgeLogger = new MinecraftBridgeLogger(getLogger());
 
         // Load configuration
         getLogger().log(Level.INFO, "Loading Configuration.");
@@ -98,7 +107,7 @@ public class MinecraftProfileBukkit extends JavaPlugin implements IMinecraftBrid
     public boolean reloadConfiguration(ISender<?> sender) {
         reloadConfig();
 
-        if (MinecraftProfileVars.startConfig(getConfiguration(), getLogger())) {
+        if (MinecraftProfileVars.startConfig(getConfiguration(), getBridgeLogger())) {
             if (!saveConfiguration()) {
                 return false;
             }
