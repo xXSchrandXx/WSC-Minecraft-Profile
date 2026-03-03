@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>de.xxschrandxx.wsc</groupId>
 			<artifactId>wscbridge</artifactId>
-			<version>3.0.0</version>
+			<version>3.0.2</version>
 		</dependency>
 		<!-- SkinsRestorer API -->
 		<dependency>
